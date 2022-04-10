@@ -1,9 +1,21 @@
-import { Input } from "@ui5/webcomponents-react";
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
+import InputWrapper from "./wrappers/input.wrapper";
 
 function App() {
-	return <div></div>;
+	const [value, setValue] = useState<any>({ name: "hola" });
+
+	return (
+		<div>
+			{value.name}
+			<InputWrapper
+				value={value.name}
+				object={value}
+				attribute={"name"}
+				setter={setValue}
+			/>
+		</div>
+	);
 }
 
 export default App;
