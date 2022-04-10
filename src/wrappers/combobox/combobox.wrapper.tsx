@@ -8,12 +8,12 @@ interface ComboboxWrapperData {
 }
 
 export interface ComboboxWrapperParameters {
-	data: ComboboxWrapperData[];
-	setter: any;
-	object: any;
-	attribute: any;
 	value: any;
+	object: any;
+	setter: any;
+	attribute: string;
 	validator: boolean;
+	data: ComboboxWrapperData[];
 }
 
 function ComboboxWrapper(props: ComboboxWrapperParameters) {

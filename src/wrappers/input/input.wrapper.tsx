@@ -5,8 +5,8 @@ import { Input } from "@ui5/webcomponents-react";
 export interface InputWrapperParameters {
 	value: any;
 	object: any;
-	attribute: any;
 	setter: any;
+	attribute: string;
 	validator: boolean;
 	type: "Email" | "Number" | "Password" | "Tel" | "Text" | "URL";
 }
