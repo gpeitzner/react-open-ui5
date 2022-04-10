@@ -7,6 +7,8 @@ export interface InputWrapperParameters {
 	object: any;
 	attribute: any;
 	setter: any;
+	validator: boolean;
+	type: "Email" | "Number" | "Password" | "Tel" | "Text" | "URL";
 }
 
 function InputWrapper(props: InputWrapperParameters) {
@@ -20,6 +22,8 @@ function InputWrapper(props: InputWrapperParameters) {
 				})
 			}
 			className="input-wrapper"
+			valueState={props.validator ? "Success" : "Error"}
+			type={props.type}
 		/>
 	);
 }
