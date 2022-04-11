@@ -14,8 +14,6 @@ function DateRangePickerWrapper(props: DateRangePickerWrapperParameters) {
 	return (
 		<DateRangePicker
 			className="daterangepicker-wrapper"
-			primaryCalendarType="Gregorian"
-			formatPattern="dd-MM-yyyy"
 			value={props.value}
 			onChange={(e) =>
 				props.setter({
@@ -24,6 +22,8 @@ function DateRangePickerWrapper(props: DateRangePickerWrapperParameters) {
 				})
 			}
 			valueState={props.validator ? "Success" : "Error"}
+			primaryCalendarType="Gregorian"
+			formatPattern="dd-MM-yyyy"
 		/>
 	);
 }

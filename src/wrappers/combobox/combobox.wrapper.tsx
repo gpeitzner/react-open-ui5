@@ -32,6 +32,7 @@ function ComboboxWrapper(props: ComboboxWrapperParameters) {
 	return (
 		<ComboBox
 			className="combobox-wrapper"
+			value={getValue()}
 			onChange={(e) => {
 				const found: ComboboxWrapperData | undefined = props.data.find(
 					(item: ComboboxWrapperData) =>
@@ -41,7 +42,6 @@ function ComboboxWrapper(props: ComboboxWrapperParameters) {
 					props.setter({ ...props.object, [props.attribute]: found.id });
 				}
 			}}
-			value={getValue()}
 			valueState={props.validator ? "Success" : "Error"}
 		>
 			{props.data.map((item: ComboboxWrapperData) => (

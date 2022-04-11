@@ -14,6 +14,7 @@ export interface InputWrapperParameters {
 function InputWrapper(props: InputWrapperParameters) {
 	return (
 		<Input
+			className="input-wrapper"
 			value={props.value}
 			onInput={(e) =>
 				props.setter({
@@ -21,7 +22,6 @@ function InputWrapper(props: InputWrapperParameters) {
 					[props.attribute]: e.target.value,
 				})
 			}
-			className="input-wrapper"
 			valueState={props.validator ? "Success" : "Error"}
 			type={props.type}
 		/>
