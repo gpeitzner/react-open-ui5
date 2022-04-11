@@ -2,7 +2,7 @@ import "./combobox.wrapper.css";
 
 import { ComboBox, ComboBoxItem } from "@ui5/webcomponents-react";
 
-interface ComboboxWrapperData {
+export interface ComboboxWrapperData {
 	id: number;
 	content: string;
 }

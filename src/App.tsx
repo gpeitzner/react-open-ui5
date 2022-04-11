@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import ComboboxWrapper from "./wrappers/combobox/combobox.wrapper";
-import DatePickerWrapper from "./wrappers/datepicker/datepicker.wrapper";
-import DateRangePickerWrapper from "./wrappers/daterangepicker/daterangepicker.wrapper";
-import InputWrapper from "./wrappers/input/input.wrapper";
+import FormWrapper from "./wrappers/form/form.wrapper";
 
 function App() {
 	const [value, setValue] = useState<any>({
@@ -15,39 +12,65 @@ function App() {
 
 	return (
 		<div>
-			{value.name}
-			<InputWrapper
-				value={value.name}
+			{`name: ${value.name}`}
+			<br />
+			{`id: ${value.id}`}
+			<br />
+			{`date: ${value.date}`}
+			<br />
+			{`dateRange: ${value.dateRange}`}
+			<br />
+			<FormWrapper
+				titleText={"Form Wrapper"}
+				subGroups={[
+					{
+						titleText: "Form Subgroup Wrapper",
+						elements: [
+							{
+								label: "Input",
+								attribute: "name",
+								type: "Input",
+								value: value.name,
+								validator: value.name.toString() !== "",
+								inputType: "Text",
+							},
+						],
+					},
+					{
+						titleText: "Form Subgroup Wrapper",
+						elements: [
+							{
+								label: "Combobox",
+								attribute: "id",
+								type: "ComboBox",
+								value: value.id,
+								validator: value.id.toString() !== "0",
+								comboboxData: [{ id: 1, content: "Guillermo" }],
+							},
+						],
+					},
+					{
+						titleText: "Form Subgroup Wrapper",
+						elements: [
+							{
+								label: "Datepicker",
+								attribute: "date",
+								type: "DatePicker",
+								value: value.date,
+								validator: value.date.toString() !== "",
+							},
+							{
+								label: "Daterangepicker",
+								attribute: "dateRange",
+								type: "DateRangePicker",
+								value: value.dateRange,
+								validator: value.dateRange.toString() !== "",
+							},
+						],
+					},
+				]}
 				object={value}
 				setter={setValue}
-				attribute={"name"}
-				validator={value.name.toString() !== ""}
-				type={"Text"}
-			/>
-			{value.id}
-			<ComboboxWrapper
-				value={value.id}
-				object={value}
-				setter={setValue}
-				attribute={"id"}
-				validator={value.id.toString() !== "0"}
-				data={[{ id: 1, content: "Guillermo" }]}
-			/>
-			{value.date}
-			<DatePickerWrapper
-				value={value.date}
-				object={value}
-				setter={setValue}
-				attribute={"date"}
-				validator={value.date.toString() !== ""}
-			/>
-			{value.dateRange}
-			<DateRangePickerWrapper
-				value={value.dateRage}
-				object={value}
-				setter={setValue}
-				attribute={"dateRange"}
-				validator={value.dateRange.toString() !== ""}
 			/>
 		</div>
 	);
