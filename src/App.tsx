@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import ComboboxWrapper from "./wrappers/combobox/combobox.wrapper";
 import DatePickerWrapper from "./wrappers/datepicker/datepicker.wrapper";
+import DateRangePickerWrapper from "./wrappers/daterangepicker/daterangepicker.wrapper";
 import InputWrapper from "./wrappers/input/input.wrapper";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
 		name: "",
 		id: 0,
 		date: "12-04-2022",
+		dateRange: "",
 	});
 
 	return (
@@ -38,6 +40,14 @@ function App() {
 				setter={setValue}
 				attribute={"date"}
 				validator={value.date.toString() !== ""}
+			/>
+			{value.dateRange}
+			<DateRangePickerWrapper
+				value={value.dateRage}
+				object={value}
+				setter={setValue}
+				attribute={"dateRange"}
+				validator={value.dateRange.toString() !== ""}
 			/>
 		</div>
 	);
