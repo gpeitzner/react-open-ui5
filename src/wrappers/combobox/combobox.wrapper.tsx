@@ -1,6 +1,6 @@
 import "./combobox.wrapper.css";
 
-import { ComboBox, ComboBoxItem } from "@ui5/webcomponents-react";
+import { ComboBox, ComboBoxItem, Icon } from "@ui5/webcomponents-react";
 
 export interface ComboboxWrapperData {
 	id: number;
@@ -14,6 +14,7 @@ export interface ComboboxWrapperParameters {
 	attribute: string;
 	validator?: boolean;
 	data: ComboboxWrapperData[];
+	icon?: string;
 }
 
 function ComboboxWrapper(props: ComboboxWrapperParameters) {
@@ -49,6 +50,7 @@ function ComboboxWrapper(props: ComboboxWrapperParameters) {
 						: "Error"
 					: "None"
 			}
+			icon={props.icon && <Icon name={props.icon} />}
 		>
 			{props.data.map((item: ComboboxWrapperData) => (
 				<ComboBoxItem text={item.content} key={item.id} />

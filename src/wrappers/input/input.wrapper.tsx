@@ -1,6 +1,6 @@
 import "./input.wrapper.css";
 
-import { Input } from "@ui5/webcomponents-react";
+import { Icon, Input } from "@ui5/webcomponents-react";
 
 export interface InputWrapperParameters {
 	value: any;
@@ -9,6 +9,7 @@ export interface InputWrapperParameters {
 	attribute: string;
 	validator?: boolean;
 	type: "Email" | "Number" | "Password" | "Tel" | "Text" | "URL";
+	icon?: string;
 }
 
 function InputWrapper(props: InputWrapperParameters) {
@@ -30,6 +31,7 @@ function InputWrapper(props: InputWrapperParameters) {
 					: "None"
 			}
 			type={props.type}
+			icon={props.icon && <Icon name={props.icon} />}
 		/>
 	);
 }

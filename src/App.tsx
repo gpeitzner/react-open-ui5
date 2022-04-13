@@ -82,6 +82,7 @@ function App() {
 										value: value.name,
 										validator: value.name.toString() !== "",
 										inputType: "Text",
+										icon: "add",
 									},
 								],
 							},

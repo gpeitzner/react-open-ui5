@@ -16,6 +16,7 @@ export interface FormItemWrapper {
 	validator?: boolean;
 	inputType?: "Email" | "Number" | "Password" | "Tel" | "Text" | "URL";
 	comboboxData?: ComboboxWrapperData[];
+	icon?: string;
 }
 
 export interface FormGroupWrapper {
@@ -47,6 +48,7 @@ function FormWrapper(props: FormWrapperParameters) {
 											attribute={formItem.attribute}
 											validator={formItem.validator}
 											type={formItem.inputType ? formItem.inputType : "Text"}
+											icon={formItem.icon}
 										/>
 									</FormItem>
 								);
@@ -60,6 +62,7 @@ function FormWrapper(props: FormWrapperParameters) {
 											attribute={formItem.attribute}
 											validator={formItem.validator}
 											data={formItem.comboboxData ? formItem.comboboxData : []}
+											icon={formItem.icon}
 										/>
 									</FormItem>
 								);
