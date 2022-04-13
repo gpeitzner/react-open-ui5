@@ -15,10 +15,10 @@ function DateRangePickerWrapper(props: DateRangePickerWrapperParameters) {
 		<DateRangePicker
 			className="daterangepicker-wrapper"
 			value={props.value}
-			onChange={(e) =>
+			onChange={(e: any) =>
 				props.setter({
 					...props.object,
-					[props.attribute]: e.target.value.toString(),
+					[props.attribute]: e.target.liveValue.toString(),
 				})
 			}
 			valueState={props.validator ? "Success" : "Error"}
