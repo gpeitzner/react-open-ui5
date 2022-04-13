@@ -7,8 +7,8 @@ export interface InputWrapperParameters {
 	object: any;
 	setter: any;
 	attribute: string;
-	validator?: boolean;
 	type: "Email" | "Number" | "Password" | "Tel" | "Text" | "URL";
+	validator?: boolean;
 	icon?: string;
 }
 

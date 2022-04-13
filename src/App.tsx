@@ -77,12 +77,17 @@ function App() {
 								elements: [
 									{
 										label: "Input",
-										attribute: "name",
-										type: "Input",
-										value: value.name,
-										validator: value.name.toString() !== "",
-										inputType: "Text",
-										icon: "add",
+										child: {
+											type: "Input",
+											properties: {
+												value: value.name,
+												object: value,
+												setter: setValue,
+												attribute: "name",
+												type: "Text",
+												icon: "add",
+											},
+										},
 									},
 								],
 							},
@@ -91,11 +96,17 @@ function App() {
 								elements: [
 									{
 										label: "Combobox",
-										attribute: "id",
-										type: "ComboBox",
-										value: value.id,
-										validator: value.id.toString() !== "0",
-										comboboxData: [{ id: 1, content: "Guillermo" }],
+										child: {
+											type: "ComboBox",
+											properties: {
+												value: value.id,
+												object: value,
+												setter: setValue,
+												attribute: "id",
+												validator: value.id.toString() !== "0",
+												data: [{ id: 1, content: "Guillermo" }],
+											},
+										},
 									},
 								],
 							},
@@ -103,23 +114,45 @@ function App() {
 								titleText: "Form Subgroup Wrapper",
 								elements: [
 									{
-										label: "Datepicker",
-										attribute: "date",
-										type: "DatePicker",
-										value: value.date,
-										validator: value.date.toString() !== "",
+										label: "Date Picker",
+										child: {
+											type: "DatePicker",
+											properties: {
+												value: value.date,
+												object: value,
+												setter: setValue,
+												attribute: "date",
+												validator: value.date.toString() !== "",
+											},
+										},
 									},
 									{
-										label: "Daterangepicker",
-										attribute: "dateRange",
-										type: "DateRangePicker",
-										value: value.dateRange,
+										label: "Date Range Picker",
+										child: {
+											type: "DateRangePicker",
+											properties: {
+												value: value.dateRange,
+												object: value,
+												setter: setValue,
+												attribute: "dateRange",
+											},
+										},
+									},
+									{
+										label: "Button",
+										child: {
+											type: "Button",
+											properties: {
+												text: "Click Me!",
+												action: () => console.log("[FLAG]"),
+												design: "Emphasized",
+												icon: "create",
+											},
+										},
 									},
 								],
 							},
 						]}
-						object={value}
-						setter={setValue}
 					/>
 				</DynamicPage>
 			</FlexBox>

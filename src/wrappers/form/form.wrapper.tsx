@@ -1,22 +1,53 @@
 import "./form.wrapper.css";
 
 import { Form, FormGroup, FormItem } from "@ui5/webcomponents-react";
-import InputWrapper from "../input/input.wrapper";
+import InputWrapper, { InputWrapperParameters } from "../input/input.wrapper";
 import ComboboxWrapper, {
-	ComboboxWrapperData,
+	ComboboxWrapperParameters,
 } from "../combobox/combobox.wrapper";
-import DatePickerWrapper from "../datepicker/datepicker.wrapper";
-import DateRangePickerWrapper from "../daterangepicker/daterangepicker.wrapper";
+import DatePickerWrapper, {
+	DatePickerWrapperParameters,
+} from "../datepicker/datepicker.wrapper";
+import DateRangePickerWrapper, {
+	DateRangePickerWrapperParameters,
+} from "../daterangepicker/daterangepicker.wrapper";
+import ButtonWrapper, {
+	ButtonWrapperParameters,
+} from "../button/button.wrapper";
+
+interface InputWrapperProperties {
+	type: "Input";
+	properties: InputWrapperParameters;
+}
+
+interface ComboboxWrapperProperties {
+	type: "ComboBox";
+	properties: ComboboxWrapperParameters;
+}
+
+interface DatePickerWrapperProperties {
+	type: "DatePicker";
+	properties: DatePickerWrapperParameters;
+}
+
+interface DateRangePickerWrapperProperties {
+	type: "DateRangePicker";
+	properties: DateRangePickerWrapperParameters;
+}
+
+interface ButtonWrapperProperties {
+	type: "Button";
+	properties: ButtonWrapperParameters;
+}
 
 export interface FormItemWrapper {
-	type: "Input" | "ComboBox" | "DatePicker" | "DateRangePicker";
 	label: string;
-	value: any;
-	attribute: string;
-	validator?: boolean;
-	inputType?: "Email" | "Number" | "Password" | "Tel" | "Text" | "URL";
-	comboboxData?: ComboboxWrapperData[];
-	icon?: string;
+	child:
+		| InputWrapperProperties
+		| ComboboxWrapperProperties
+		| DatePickerWrapperProperties
+		| DateRangePickerWrapperProperties
+		| ButtonWrapperProperties;
 }
 
 export interface FormGroupWrapper {
@@ -27,8 +58,6 @@ export interface FormGroupWrapper {
 export interface FormWrapperParameters {
 	titleText: string;
 	subGroups: FormGroupWrapper[];
-	object: any;
-	setter: any;
 }
 
 function FormWrapper(props: FormWrapperParameters) {
@@ -37,18 +66,18 @@ function FormWrapper(props: FormWrapperParameters) {
 			{props.subGroups.map((subGroupItem: FormGroupWrapper, i: number) => (
 				<FormGroup titleText={subGroupItem.titleText} key={i}>
 					{subGroupItem.elements.map((formItem: FormItemWrapper, j: number) => {
-						switch (formItem.type) {
+						switch (formItem.child.type) {
 							case "Input":
 								return (
 									<FormItem key={j} label={formItem.label}>
 										<InputWrapper
-											value={formItem.value}
-											object={props.object}
-											setter={props.setter}
-											attribute={formItem.attribute}
-											validator={formItem.validator}
-											type={formItem.inputType ? formItem.inputType : "Text"}
-											icon={formItem.icon}
+											value={formItem.child.properties.value}
+											object={formItem.child.properties.object}
+											setter={formItem.child.properties.setter}
+											attribute={formItem.child.properties.attribute}
+											validator={formItem.child.properties.validator}
+											type={formItem.child.properties.type}
+											icon={formItem.child.properties.icon}
 										/>
 									</FormItem>
 								);
@@ -56,13 +85,13 @@ function FormWrapper(props: FormWrapperParameters) {
 								return (
 									<FormItem key={j} label={formItem.label}>
 										<ComboboxWrapper
-											value={formItem.value}
-											object={props.object}
-											setter={props.setter}
-											attribute={formItem.attribute}
-											validator={formItem.validator}
-											data={formItem.comboboxData ? formItem.comboboxData : []}
-											icon={formItem.icon}
+											value={formItem.child.properties.value}
+											object={formItem.child.properties.object}
+											setter={formItem.child.properties.setter}
+											attribute={formItem.child.properties.attribute}
+											validator={formItem.child.properties.validator}
+											data={formItem.child.properties.data}
+											icon={formItem.child.properties.icon}
 										/>
 									</FormItem>
 								);
@@ -70,11 +99,11 @@ function FormWrapper(props: FormWrapperParameters) {
 								return (
 									<FormItem key={j} label={formItem.label}>
 										<DatePickerWrapper
-											value={formItem.value}
-											object={props.object}
-											setter={props.setter}
-											attribute={formItem.attribute}
-											validator={formItem.validator}
+											value={formItem.child.properties.value}
+											object={formItem.child.properties.object}
+											setter={formItem.child.properties.setter}
+											attribute={formItem.child.properties.attribute}
+											validator={formItem.child.properties.validator}
 										/>
 									</FormItem>
 								);
@@ -82,11 +111,23 @@ function FormWrapper(props: FormWrapperParameters) {
 								return (
 									<FormItem key={j} label={formItem.label}>
 										<DateRangePickerWrapper
-											value={formItem.value}
-											object={props.object}
-											setter={props.setter}
-											attribute={formItem.attribute}
-											validator={formItem.validator}
+											value={formItem.child.properties.value}
+											object={formItem.child.properties.object}
+											setter={formItem.child.properties.setter}
+											attribute={formItem.child.properties.attribute}
+											validator={formItem.child.properties.validator}
+										/>
+									</FormItem>
+								);
+							case "Button":
+								return (
+									<FormItem key={j} label={formItem.label}>
+										<ButtonWrapper
+											text={formItem.child.properties.text}
+											action={formItem.child.properties.action}
+											design={formItem.child.properties.design}
+											disabled={formItem.child.properties.disabled}
+											icon={formItem.child.properties.icon}
 										/>
 									</FormItem>
 								);
