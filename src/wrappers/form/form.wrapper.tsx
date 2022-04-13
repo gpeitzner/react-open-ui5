@@ -13,7 +13,7 @@ export interface FormItemWrapper {
 	label: string;
 	value: any;
 	attribute: string;
-	validator: boolean;
+	validator?: boolean;
 	inputType?: "Email" | "Number" | "Password" | "Tel" | "Text" | "URL";
 	comboboxData?: ComboboxWrapperData[];
 }

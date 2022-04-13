@@ -7,7 +7,7 @@ export interface DatePickerWrapperParameters {
 	object: any;
 	setter: any;
 	attribute: string;
-	validator: boolean;
+	validator?: boolean;
 }
 
 function DatePickerWrapper(props: DatePickerWrapperParameters) {
@@ -21,7 +21,13 @@ function DatePickerWrapper(props: DatePickerWrapperParameters) {
 					[props.attribute]: e.target.liveValue.toString(),
 				});
 			}}
-			valueState={props.validator ? "Success" : "Error"}
+			valueState={
+				props.validator !== undefined
+					? props.validator
+						? "Success"
+						: "Error"
+					: "None"
+			}
 			primaryCalendarType="Gregorian"
 			formatPattern="dd-MM-yyyy"
 		/>

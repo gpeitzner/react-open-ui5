@@ -7,7 +7,7 @@ export interface InputWrapperParameters {
 	object: any;
 	setter: any;
 	attribute: string;
-	validator: boolean;
+	validator?: boolean;
 	type: "Email" | "Number" | "Password" | "Tel" | "Text" | "URL";
 }
 
@@ -22,7 +22,13 @@ function InputWrapper(props: InputWrapperParameters) {
 					[props.attribute]: e.target.value,
 				})
 			}
-			valueState={props.validator ? "Success" : "Error"}
+			valueState={
+				props.validator !== undefined
+					? props.validator
+						? "Success"
+						: "Error"
+					: "None"
+			}
 			type={props.type}
 		/>
 	);

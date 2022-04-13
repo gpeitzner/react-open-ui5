@@ -12,7 +12,7 @@ export interface ComboboxWrapperParameters {
 	object: any;
 	setter: any;
 	attribute: string;
-	validator: boolean;
+	validator?: boolean;
 	data: ComboboxWrapperData[];
 }
 
@@ -42,7 +42,13 @@ function ComboboxWrapper(props: ComboboxWrapperParameters) {
 					props.setter({ ...props.object, [props.attribute]: found.id });
 				}
 			}}
-			valueState={props.validator ? "Success" : "Error"}
+			valueState={
+				props.validator !== undefined
+					? props.validator
+						? "Success"
+						: "Error"
+					: "None"
+			}
 		>
 			{props.data.map((item: ComboboxWrapperData) => (
 				<ComboBoxItem text={item.content} key={item.id} />

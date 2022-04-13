@@ -7,7 +7,7 @@ export interface DateRangePickerWrapperParameters {
 	object: any;
 	setter: any;
 	attribute: string;
-	validator: boolean;
+	validator?: boolean;
 }
 
 function DateRangePickerWrapper(props: DateRangePickerWrapperParameters) {
@@ -21,7 +21,13 @@ function DateRangePickerWrapper(props: DateRangePickerWrapperParameters) {
 					[props.attribute]: e.target.liveValue.toString(),
 				})
 			}
-			valueState={props.validator ? "Success" : "Error"}
+			valueState={
+				props.validator !== undefined
+					? props.validator
+						? "Success"
+						: "Error"
+					: "None"
+			}
 			primaryCalendarType="Gregorian"
 			formatPattern="dd-MM-yyyy"
 		/>

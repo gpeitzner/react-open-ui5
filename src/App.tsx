@@ -113,7 +113,6 @@ function App() {
 										attribute: "dateRange",
 										type: "DateRangePicker",
 										value: value.dateRange,
-										validator: value.dateRange.toString() !== "",
 									},
 								],
 							},
