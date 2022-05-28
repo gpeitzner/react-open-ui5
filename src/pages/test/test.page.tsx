@@ -12,7 +12,7 @@ function Test() {
   });
 
   return (
-    <DynamicPage headerContentPinnable={false} showHideHeaderButton={false}>
+    <DynamicPage className="test" headerContentPinnable={false} showHideHeaderButton={false}>
       {`name: ${value.name}`}
       <br />
       {`id: ${value.id}`}
